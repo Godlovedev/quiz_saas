@@ -1,0 +1,86 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% tailwind_css %}
+
+</head>
+<body>
+    <div>
+
+        <header class="bg-white z-50 fixed top-0 w-full shadow">
+            <nav id="main-nav" class="bg-white max-w-5xl mx-auto font-serif p-6 flex items-center justify-between">
+                <a href="top" aria-label="page d'accueil du site" class="flex">
+                    <img src="https://www.shutterstock.com/image-vector/quiz-logo-time-label-question-260nw-2299277831.jpg" alt="" class="hidden md:w-20 md:h-16 md:inline md:mr-4">
+                </a>
+    
+                <button aria-label="toggle button" aria-expanded="false" id="menu-btn" class="cursor-pointer w-7 md:hidden">
+                    <img id="menu-btn-img" src="" alt="">
+    
+                </button>
+                <ul id="toggled-menu" class="w-full absolute top-full left-0 -translate-y-full -z-10 text-gray-800 border-b border-gray-200 flex flex-col bg-white items-center md:static md:z-10 md:w-min md:transform-none md:border-none md:flex-row">
+                    <li class="py-4 md:py-0 md:mr-6">
+                        <a href="#competences" class="text-sm uppercase font-semibold w-full hover:text-rose-600">Quiz</a>
+                    </li>
+                    <li class="py-4 md:py-0 md:mr-6">
+                        <a href="#Statistiques" class="text-sm uppercase font-semibold w-full hover:text-rose-600">Statistiques</a>
+                    </li>
+                    <li class="py-4 md:py-0  md:mr-6">
+                        <a href="#contact" class="text-sm uppercase font-semibold w-full hover:text-rose-600">about</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class=" max-w-5xl mx-auto pt-16 font-serif">
+            <div>
+                <br>
+                {% for message in messages %}
+                    <div class=" rounded-lg {{message.tags}}">
+                        {{ message|safe }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+    </div>
+    <script>
+    
+    const toggleMenuBtn = document.querySelector("#menu-btn");
+    const toggleMenuImg = document.querySelector("#menu-btn-img");
+    const ToggledMenu = document.querySelector("#toggled-menu");
+    const menuLinks = document.querySelector("#main-nav ul a");
+    
+    toggleMenuBtn.addEventListener("click", function(){
+        ToggledMenu.classList.toggle("-translate-y-full")
+    })
+    
+    if (ToggledMenu.classList.contains("-translate-y-full")){
+        toggleMenuImg.setAttribute("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/640px-Hamburger_icon.svg.png")
+    
+        toggleMenuBtn.setAttribute("aria-expanded", "false")
+    }else{
+        toggleMenuImg.setAttribute("src", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx5qiFMjVt6uLaJJZIhCCUW045XEn8GA359w&s")
+    
+        toggleMenuBtn.setAttribute("aria-expanded", "true")
+    }
+    
+    </script>        
+
+    <div class="static md:w-full transform-none border-none pt-16 flex-row mb-5">
+        {% block content %}
+
+    {% endblock content %}
+    </div>
+
+    <footer>
+
+        <div class="grid text-center p-3 grid-cols-2 bg-violet-600">
+            <p class="ml-auto">Quiz site © 2024 copyright: </p>
+            <a href="#Godlovedev" class="mr-auto text-blue-500 underline underline-offset-2"> Godlovedev</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -16,7 +16,18 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+try:
+    from django.contrib.messages import constants as messages
+    MESSAGE_TAGS = {
+        messages.DEBUG: "bg-blue-100",
+        messages.INFO: "bg-blue-100 ",
+        messages.SUCCESS: "bg-green-100 ",
+        messages.WARNING: "bg-orange-100",
+        messages.ERROR: "bg-red-100 ",
+    }
 
+except Exception as e:
+    pass
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 

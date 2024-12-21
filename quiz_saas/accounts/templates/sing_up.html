@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="p-10">
+        <div class="max-w-2xl grid mx-auto bg-zinc-200 rounded-lg p-4">
+            <form action="" method="post" class="grid gap-3 md:gap-5" enctype="multipart/form-data">
+                {% csrf_token %}
+                <p class="text-center font-bold text-2xl">Register form</p>
+                {{form.as_p}}
+                <button type="submit" class="hover:bg-white p-3 rounded-xl text-black font-bold">Envoyer</button>
+    
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
