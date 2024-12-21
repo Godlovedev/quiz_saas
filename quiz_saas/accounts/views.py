@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from accounts.forms import UserForm, UserConnexion
 from django.contrib.auth import login, authenticate, logout
@@ -67,3 +67,12 @@ class ConnexionView(View):
                 message = "une erreur s'est produite !"
 
         return render(self.request, "login.html", {"form": form})
+
+
+# decconnection view
+class DeconnecxionView(View):
+    def get(self, *args, **kwargs):
+
+        logout(self.request)
+
+        return redirect("login")
