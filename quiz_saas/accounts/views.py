@@ -61,8 +61,7 @@ class ConnexionView(View):
 
                 login(self.request, user)
 
-                print("the user is authrnticated")
-            
+                return redirect("quiz-list")            
             else:
                 message = "une erreur s'est produite !"
 

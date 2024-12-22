@@ -14,7 +14,7 @@
         <header class="bg-white z-50 fixed top-0 w-full shadow">
             <nav id="main-nav" class="bg-white max-w-5xl mx-auto font-serif p-6 flex items-center justify-between">
                 <a href="top" aria-label="page d'accueil du site" class="flex">
-                    <img src="https://www.shutterstock.com/image-vector/quiz-logo-time-label-question-260nw-2299277831.jpg" alt="" class="hidden md:w-20 md:h-16 md:inline md:mr-4">
+                    <img src="https://www.shutterstock.com/image-vector/quiz-logo-time-label-question-260nw-2299277831.jpg" alt="" class="w-20 :h-16 inline mx-auto">
                 </a>
     
                 <button aria-label="toggle button" aria-expanded="false" id="menu-btn" class="cursor-pointer w-7 md:hidden">
@@ -23,7 +23,7 @@
                 </button>
                 <ul id="toggled-menu" class="w-full absolute top-full left-0 -translate-y-full -z-10 text-gray-800 border-b border-gray-200 flex flex-col bg-white items-center md:static md:z-10 md:w-min md:transform-none md:border-none md:flex-row">
                     <li class="py-4 md:py-0 md:mr-6">
-                        <a href="#competences" class="text-sm uppercase font-semibold w-full hover:text-rose-600">Quiz</a>
+                        <a href="{% url 'quiz-list' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">Quiz</a>
                     </li>
                     <li class="py-4 md:py-0 md:mr-6">
                         <a href="#Statistiques" class="text-sm uppercase font-semibold w-full hover:text-rose-600">Statistiques</a>

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.shortcuts import reverse
 
 # Create your models here.
 
@@ -21,6 +22,9 @@ class Quiz(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("quiz-running", kwargs={"id": self.id})
 
 
 class Question(models.Model):
