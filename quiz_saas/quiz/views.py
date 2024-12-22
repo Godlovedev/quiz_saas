@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views import View
 from quiz.models import Quiz, Question, UserResult
+from quiz.utils import LoginRequiredMixin
+
 
 # Create your views here.
 class HomeView(View):
@@ -16,7 +18,7 @@ class QuizView(View):
         return render(self.request, "quiz_list.html", {"quizs":quizs})
 
 
-class QuizRunnigView(View):
+class QuizRunnigView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         quiz_id = self.kwargs.get("id")
 
