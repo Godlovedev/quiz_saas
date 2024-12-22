@@ -7,28 +7,34 @@
     <div class="mb-44 max-w-2xl mx-auto px-3 md:max-w-5xl">
         <p class="text-center font-bold underline underline-offset-2 text-2xl">{{ quiz.title }} <span class="align-sub text-sm">by {{ quiz.creator.username }}</span></p>
         <div>
-            <p class="text-3xl underline underline-offset-2 mt-3">Questions</p>
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <p class="text-3xl underline underline-offset-2 mt-3">Questions</p>
 
-            <div class="grid gap-3 md:grid-cols-2 mt-5">
-                {% for question in quiz.question.all %}
+                <div class="grid gap-3 md:grid-cols-2 mt-5">
+                    {% for question in quiz.question.all %}
 
-                <div class="bg-zinc-200 p-2 rounded-lg">
-                    <p class="text-2xl mt-3 text-center font-bold font-serif">{{ question.text }}</p>
-                    <p class="font-bold mt-3 mb-2 underline underline-offset-4">Choices :</p>
-                    <div class="grid grid-cols-2 gap-4 p-3">
-                        {% for choice in question.choice.all %}
-                        <div class="w-44">
-                            <input type="radio" name="a{{question.id}}" id="a{{choice.id}}" value="{{choice.id}}">
-                        <label for="a{{choice.id}}" class="font-serif break-words">{{ choice.text }}</label>
-                        </div>
+                    <input type="hidden" name="questionid" value="{{question.id}}">
+
+                    <div class="bg-zinc-200 p-2 rounded-lg">
+                        <p class="text-2xl mt-3 text-center font-bold font-serif">{{ question.text }}</p>
+                        <p class="font-bold mt-3 mb-2 underline underline-offset-4">Choices :</p>
+                        <div class="grid grid-cols-2 gap-4 p-3">
+                            {% for choice in question.choice.all %}
+                            <div class="w-44">
+                                <input type="radio" name="{{question.id}}" id="a{{choice.id}}" value="{{choice.id}}">
+                            <label for="a{{choice.id}}" class="font-serif break-words">{{ choice.text }}</label>
+                            </div>
 
                         {% endfor %}
+                        </div>
                     </div>
-                </div>
-
-
-                {% endfor %}
-            </div>
+                    {% endfor %}
+                    </div>
+                    <div class="grid mx-auto mt-5">
+                        <button type="submit" class=" rounded-lg p-3 text-violet-500 font-bold bg-white border border-solid border-violet-500 hover:bg-violet-500 hover:text-white">Terminer</button>
+                    </div>
+            </form>
 
         </div>
     </div>
