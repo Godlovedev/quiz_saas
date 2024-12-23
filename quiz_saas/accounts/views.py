@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from accounts.forms import UserForm, UserConnexion
 from django.contrib.auth import login, authenticate, logout
+
 # Create your views here.
 
 # sing up view

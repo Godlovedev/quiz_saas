@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="grid gap-4">
+
+<div class="flex items-center justify-center bg-white">
+
+    <div class="w-full xl:max-w-xl lg:max-w-lg md:max-w-md max-w-xs bg-purple-50 shadow-md rounded-lg p-6">
+        <h1 class="text-2xl font-bold text-purple-700 text-center">Resultat du quiz</h1>
+
+        <div class="mt-4">
+            <p class="text-center text-xl font-bold mb-2">Thème: <span class="font-bold font-serif text-purple-600">{{ result.quiz.title }}</span></p>
+            <p class="text-gray-700 text-lg">Nombre de réponses justes: <span class="font-bold text-purple-600">{{ result.score }}</span></p>
+            <p class="text-gray-700 text-lg mt-2">Nombre total de questions: <span class="font-bold text-purple-600">{{ result.quiz.question.count }}</span></p>
+            <p class="text-gray-700 mt-2 text-lg">Pourcentage de réussite: <span class="font-bold text-purple-600">{{ percent }}%</span></p>
+                <a href="{% url 'quiz-list' %}" class="bg-white flex place-content-center rounded-3xl text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Faire un autre quiz</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="items-center justify-center flex">
+    <div class="w-full xl:max-w-xl lg:max-w-lg md:max-w-md max-w-xs  shadow-md bg-purple-50 rounded-lg p-6">
+        <h1 class="text-2xl font-bold text-purple-600 text-center">Réponses du quiz</h1>
+        <div>
+            {% for question in result.quiz.question.all %}
+
+                <p class="mt-4 font-lg text-gray-700 text-lg">Question: <span class="font-bold text-purple-700">{{ question.text }}</span></p>
+                <p>Propositions: <br> 
+                    {% for choice in question.choice.all %}
+                        <p class="mt-2 text-gray-800 font-semibold">- {{ choice.text }}</p>
+                    {% endfor %}
+                </p>
+                <p class="mt-2">Réponse juste: <br> 
+                    {% for choice in question.choice.all %}
+
+                        {% if choice.is_correct %}
+                            <p class="font-bold text-lg border-b border-solid border-b-slate-900 text-gray-800">-  {{ choice.text }}</p>
+                        {% endif %}
+
+                    {% endfor %}
+                </p>
+
+                <!-- <p>Votre réponse: <br> 
+                    {% for id in answers_id %}
+
+                        {% for choice in question.choice.all %}
+
+                            {% if choice.id == id %}
+
+                                <span>{{ choice.text }}</span>
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    {% endfor %}
+                </p> -->
+
+            {% endfor %}
+        </div>
+        {% for id in answers_id %}
+                                <span>{{ id }}</span>
+
+                        {% endfor %}
+    </div>
+</div>
+
+
+</div>
+{% endblock content %}

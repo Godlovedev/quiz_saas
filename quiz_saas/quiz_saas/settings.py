@@ -73,6 +73,8 @@ MIDDLEWARE = [
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
 ROOT_URLCONF = 'quiz_saas.urls'
 
 TEMPLATES = [

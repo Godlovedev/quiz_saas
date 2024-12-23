@@ -25,6 +25,9 @@ class Quiz(models.Model):
 
     def get_absolute_url(self):
         return reverse("quiz-running", kwargs={"id": self.id})
+    
+    def get_result_url(self):
+        return reverse("result", kwargs={"id":self.id})
 
 
 class Question(models.Model):

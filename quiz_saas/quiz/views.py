@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from quiz.models import Quiz, Question, UserResult
 from quiz.utils import LoginRequiredMixin
@@ -49,6 +49,7 @@ class QuizRunnigView(LoginRequiredMixin, View):
         user_result.score = 0
 
         # parcourrir tous les id dans la liste créée
+        answers_id = []
         for question_id in questions_id:
 
             # reccuperer la question qui correspond a cet id
@@ -57,6 +58,8 @@ class QuizRunnigView(LoginRequiredMixin, View):
             # a partir de cet id recuperer l'id du choic du user
             # dans le post c'est envoyé ainsi "id_de_la_question": "id_de_la_reponse"
             choice_id = self.request.POST.get(question_id)
+            
+            answers_id.append(choice_id)
 
             # recuperation de la reponse a partir de l'id de la reponse du user
             choice = question.choice.get(id=choice_id)
@@ -73,4 +76,22 @@ class QuizRunnigView(LoginRequiredMixin, View):
 
                 user_result.save()
 
-        return render(self.request, "quiz_running.html", {"quiz":quiz})
+        self.request.session["answers_id"] = answers_id
+
+        return redirect("result", id=quiz_id)
+    
+
+class UserResultView(View):
+    def get(self, *args, **kwargs):
+
+        quiz_id = self.kwargs.get("id")
+
+        answers_id = self.request.session.get("answers_id")
+
+        quiz = Quiz.objects.prefetch_related("question__choice").get(id=quiz_id)
+
+        result = UserResult.objects.select_related("user", "quiz").get(user=self.request.user, quiz=quiz)
+
+        reussite_percent = (int(result.score * 100)) / int(result.quiz.question.count())
+
+        return render(self.request, "user_result.html", {"result":result, "percent": int(reussite_percent), "answers_id":answers_id})
