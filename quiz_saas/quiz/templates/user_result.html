@@ -27,43 +27,27 @@
 
                 <p class="mt-4 font-lg text-gray-700 text-lg">Question: <span class="font-bold text-purple-700">{{ question.text }}</span></p>
                 <p>Propositions: <br> 
-                    {% for choice in question.choice.all %}
-                        <p class="mt-2 text-gray-800 font-semibold">- {{ choice.text }}</p>
-                    {% endfor %}
+                {% for choice in question.choice.all %}
+                <p class="mt-2 text-gray-800 font-semibold">- {{ choice.text }}</p>
+                {% endfor %}
                 </p>
                 <p class="mt-2">Réponse juste: <br> 
                     {% for choice in question.choice.all %}
 
                         {% if choice.is_correct %}
-                            <p class="font-bold text-lg border-b border-solid border-b-slate-900 text-gray-800">-  {{ choice.text }}</p>
+                        <p class="font-bold text-lg border-b border-solid border-b-slate-900 text-gray-800">-  {{ choice.text }}</p>
                         {% endif %}
 
                     {% endfor %}
                 </p>
 
-                <!-- <p>Votre réponse: <br> 
-                    {% for id in answers_id %}
-
-                        {% for choice in question.choice.all %}
-
-                            {% if choice.id == id %}
-
-                                <span>{{ choice.text }}</span>
-
-                            {% endif %}
-
-                        {% endfor %}
-
-                    {% endfor %}
-                </p> -->
+                <p>Votre réponse: <br> </p>
 
             {% endfor %}
         </div>
-        {% for id in answers_id %}
-                                <span>{{ id }}</span>
 
-                        {% endfor %}
     </div>
+
 </div>
 
 

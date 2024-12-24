@@ -6,5 +6,6 @@ urlpatterns = [
     path("", views.HomeView.as_view(), name="home"),
     path("quiz-list/", views.QuizView.as_view(), name="quiz-list"),
     path("quiz-list/<int:id>/", views.QuizRunnigView.as_view(), name="quiz-running"),
-    path("quiz-list/<str:id>/user-result/", views.UserResultView.as_view(), name="result")
+    path("quiz-list/<str:id>/user-result/", views.UserResultView.as_view(), name="result"),
+    path("create/", views.CreateQuizView.as_view(), name="create-quiz")
 ]

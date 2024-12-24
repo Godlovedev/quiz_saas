@@ -49,7 +49,6 @@ class QuizRunnigView(LoginRequiredMixin, View):
         user_result.score = 0
 
         # parcourrir tous les id dans la liste créée
-        answers_id = []
         for question_id in questions_id:
 
             # reccuperer la question qui correspond a cet id
@@ -59,8 +58,6 @@ class QuizRunnigView(LoginRequiredMixin, View):
             # dans le post c'est envoyé ainsi "id_de_la_question": "id_de_la_reponse"
             choice_id = self.request.POST.get(question_id)
             
-            answers_id.append(choice_id)
-
             # recuperation de la reponse a partir de l'id de la reponse du user
             choice = question.choice.get(id=choice_id)
 
@@ -76,12 +73,10 @@ class QuizRunnigView(LoginRequiredMixin, View):
 
                 user_result.save()
 
-        self.request.session["answers_id"] = answers_id
-
         return redirect("result", id=quiz_id)
     
 
-class UserResultView(View):
+class UserResultView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
 
         quiz_id = self.kwargs.get("id")
@@ -95,3 +90,11 @@ class UserResultView(View):
         reussite_percent = (int(result.score * 100)) / int(result.quiz.question.count())
 
         return render(self.request, "user_result.html", {"result":result, "percent": int(reussite_percent), "answers_id":answers_id})
+
+
+class CreateQuizView(LoginRequiredMixin, View):
+    """ Vue pour la creation des quiz """
+
+    def get(self, *args, **kwargs):
+
+        return render(self.request, "create_quiz.html")
