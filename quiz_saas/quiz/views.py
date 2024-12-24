@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from quiz.models import Quiz, Question, UserResult
+from quiz.models import Quiz, Question, UserResult, Choice
 from quiz.utils import LoginRequiredMixin
-
+from quiz.forms import ChoiceForm, QuizForm, QuestionForm
 
 # Create your views here.
 class HomeView(View):
@@ -95,6 +95,64 @@ class UserResultView(LoginRequiredMixin, View):
 class CreateQuizView(LoginRequiredMixin, View):
     """ Vue pour la creation des quiz """
 
+    context = {}
+
     def get(self, *args, **kwargs):
 
-        return render(self.request, "create_quiz.html")
+        quiz_form = QuizForm()
+        question_form = QuestionForm()
+
+        self.context = {
+            "quiz_form": quiz_form,
+            "question_form": question_form,
+        }
+
+        return render(self.request, "create_quiz.html", self.context)
+
+    def post(self, *args, **kwargs):
+
+        title = self.request.POST.get("title")
+        description = self.request.POST.get("description")
+
+        quiz_form = QuizForm(data={"title":title, "description":description, "creator":self.request.user})
+
+        if quiz_form.is_valid():
+            quiz = quiz_form.save()
+
+            question = self.request.POST.get("text")
+
+            question_form = QuestionForm(data={"text": question})
+
+            if question_form.is_valid():
+                question = question_form.save(commit=False)
+                question.quiz = quiz
+                question.save()
+
+                choices = self.request.POST.getlist("choix")
+                valid_ans = self.request.POST.get("valid")
+
+                ans_valid = ""
+                if 0 <= int(valid_ans) < len(choices):
+                    ans_valid = choices[int(valid_ans)]
+                    choices.remove(ans_valid)
+                    
+                    Choice.objects.create(question=question, text=ans_valid, is_correct=True)
+
+                for choice in choices:
+                    
+                    choice_form = ChoiceForm(data={"text":choice})
+                    if choice_form.is_valid():
+                        choice_instance =  choice_form.save(commit=False)
+                        choice_instance.question = question
+                        choice_instance.save()
+                        
+
+            quiz_form = QuizForm()
+            question_form = QuestionForm()
+
+            self.context = {
+                "quiz_form": quiz_form,
+                "question_form": question_form,
+            }
+
+        return render(self.request, "create_quiz.html", self.context)

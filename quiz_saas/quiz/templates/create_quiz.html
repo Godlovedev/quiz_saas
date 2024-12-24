@@ -3,6 +3,69 @@
 
 {% block content %}
 
+<div class="max-w-md md:max-w-2xl lg:max-w-4xl mx-auto justify-center p-3 flex-col flex items-center bg-purple-50 rounded-lg">
+    <h1 class="font-bold text-2xl mt-2 text-purple-600 mb-2">Formulaire de creation de quiz</h1>
+    <form action="" method="post" class="grid gap-3">
+        {% csrf_token %}
 
+        {{quiz_form.title.label}}
+        {{quiz_form.title}}
+
+        {{quiz_form.description.label}}
+        {{quiz_form.description}}
+
+
+        <div class="grid gap-3">
+        <h1 class="text-2xl text-center font-bold text-purple-500">Question du quiz</h1>
+
+        {{ question_form.text.label }}
+        {{ question_form.text }}
+
+
+        <h1 class="text-2xl font-bold text-center text-purple-600">Propositions</h1>
+        <label for="choix">Choix</label>
+        <div class="grid gap-3" id="ansbox1">
+            <div class="flex flex-row gap-3">
+                <input type="text" id="choix" placeholder="entrez une reponse" name="choix" class="w-[300px] md:w-[400px] lg:w-[600px]">
+                <input type="radio" name="valid" id="choix" value="0">    
+            </div>
+            <div class="flex flex-row gap-3">
+                <input type="text" id="choix" class="w-[300px] md:w-[400px] lg:w-[600px] " name="choix" placeholder="entrer une reponse" class="">
+                <input type="radio" required name="valid" value="1" id="choix" class="repjuste">    
+            </div>
+        </div>
+        <button type="button" class="bg-white text-purple-600 rounded-lg border border-solid border-purple-400 hover:bg-purple-600 hover:text-white font-bold" id="addans1">Ajouter une reponse</button>
+        <div class="border-t border-t-black mb-3 w-full mt-2">
+        </div>
+
+        <p class=" font-bold text-purple-600 text-xs">NB: Vous pourrez ajouter d'autr questions a votre quiz depuis votre panel. Pour voire votre quiz sur la page des quiz, les admins vont tout d'abord le consulter et le publié s'il est dans les norme.Si votre quiz contient des propos déplacés il sera supprimé.</p>
+
+        <button type="submit" class="text-purple-600 p-3 border border-solid border-purple-600 font-bold bg-white hover:bg-purple-600 hover:text-white rounded-lg">Créer le quiz</button>
+        </div>
+    </form>
+</div>
+<script>
+// ajouter un input pour une reponse de plus
+let addans = document.getElementById("addans1")
+let ansbox = document.getElementById("ansbox1")
+
+let valindex = 1
+
+addans.addEventListener("click", function(){
+    valindex += 1
+    ansbox.insertAdjacentHTML(
+        "beforeend",
+        `<div class="flex flex-row gap-3">
+                <input type="text" id="choix" class="w-[300px] md:w-[400px] lg:w-[600px] " name="choix" placeholder="entrer une reponse" class="">
+                <input type="radio" name="valid" id="choix" value="${valindex}">    
+            </div>`
+    )
+})
+
+let repjuste = document.querySelector(".repjuste")
+
+repjuste.addEventListener()
+
+</script>
 
 {% endblock content %}
