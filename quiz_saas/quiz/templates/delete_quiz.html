@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex items-center justify-center bg-white">
+
+    <div class="w-full xl:max-w-6xl lg:max-w-5xl md:max-w-md max-w-xs bg-purple-50 shadow-md rounded-lg p-6">
+        <p class=" text-center font-bold md:text-2xl text-sm text-purple-600">Voulez-vous vraiment supprimer le quiz intitulé {{ quiz.title }} ?</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="flex justify-center gap-3">
+                <button type="submit" class="bg-white flex place-content-center rounded-lg text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Supprimer</button>
+                <a href="{% url 'panel' %}" class="bg-white flex place-content-center rounded-lg text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Annuler</a>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock content %}

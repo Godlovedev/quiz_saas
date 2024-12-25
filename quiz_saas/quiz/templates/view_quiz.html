@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <div class="items-center justify-center flex">
+        <div class="w-full xl:max-w-xl lg:max-w-lg md:max-w-md max-w-xs  shadow-md bg-purple-50 rounded-lg p-6">
+            <h1 class="text-2xl font-bold text-purple-600 text-center">Titre: {{ quiz.title }}</h1>
+            <div>
+                {% for question in quiz.question.all %}
+    
+                    <p class="mt-4 font-lg text-gray-700 text-lg">Question: <span class="font-bold text-purple-700">{{ question.text }}</span></p>
+                    <p>Propositions: <br> 
+                    {% for choice in question.choice.all %}
+                    <p class="mt-2 text-gray-800 font-semibold">- {{ choice.text }}</p>
+                    {% endfor %}
+                    </p>
+                    <p class="mt-2">Réponse juste: <br> 
+                        {% for choice in question.choice.all %}
+    
+                            {% if choice.is_correct %}
+                            <p class="font-bold text-lg border-b border-solid border-b-slate-900 text-gray-800">-  {{ choice.text }}</p>
+                            {% endif %}
+    
+                        {% endfor %}
+                    </p>
+    
+                {% endfor %}
+            </div>
+    
+        </div>
+    
+    </div>
+</div>
+
+{% endblock content %}

@@ -30,6 +30,12 @@ class Quiz(models.Model):
     
     def get_result_url(self):
         return reverse("result", kwargs={"id":self.id})
+    
+    def get_view_url(self):
+        return reverse("view-quiz", kwargs={"id":self.id})
+
+    def get_delete_url(self):
+        return reverse("delete-quiz", kwargs={"id":self.id})
 
 
 class Question(models.Model):

@@ -13,7 +13,7 @@ class HomeView(View):
 class QuizView(View):
     def get(self, *args, **kwargs):
 
-        quizs = Quiz.objects.select_related("creator").all()
+        quizs = Quiz.objects.select_related("creator").all().filter(is_validated=True)
 
         return render(self.request, "quiz_list.html", {"quizs":quizs})
 
@@ -156,3 +156,41 @@ class CreateQuizView(LoginRequiredMixin, View):
             }
 
         return render(self.request, "create_quiz.html", self.context)
+    
+
+class PanelView(LoginRequiredMixin, View):
+    def get(self, *args, **kwargs):
+
+        quiz = Quiz.objects.prefetch_related("question__choice").filter(creator=self.request.user)
+
+        return render(self.request, "panel.html", {"quizs": quiz})
+
+
+class DeleteQuizView(View):
+    def get(self, *args, **kwargs):
+
+        quiz_id = self.kwargs.get("id")
+
+        quiz = Quiz.objects.get(id=quiz_id)
+
+        return render(self.request, "delete_quiz.html", {"quiz":quiz})
+    
+    def post(self, *args, **kwargs):
+
+        quiz_id = self.kwargs.get("id")
+
+        quiz = Quiz.objects.get(id=quiz_id)
+
+        quiz.delete()
+
+        return redirect("panel")
+    
+
+class ViewQuizView(View):
+    def get(self, *args, **kwargs):
+
+        quiz_id = self.kwargs.get("id")
+
+        quiz = Quiz.objects.prefetch_related("question__choice").get(id=quiz_id)
+
+        return render(self.request, "view_quiz.html", {"quiz":quiz})

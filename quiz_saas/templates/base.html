@@ -25,9 +25,26 @@
                     <li class="py-4 md:py-0 md:mr-6">
                         <a href="{% url 'quiz-list' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">Quiz</a>
                     </li>
+                    {% if user.is_authenticated %}
+
                     <li class="py-4 md:py-0 md:mr-6">
-                        <a href="{% url 'create-quiz' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">Creation</a>
+                        <a href="{% url 'panel' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">Panel</a>
                     </li>
+                    <li class="py-4 md:py-0 md:mr-6">
+                        <a href="{% url 'logout' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">deconnexion</a>
+                    </li>
+
+                    {% else %}
+
+                    <li class="py-4 md:py-0 md:mr-6">
+                        <a href="{% url 'login' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">connexion</a>
+                    </li>
+                    <li class="py-4 md:py-0 md:mr-6">
+                        <a href="{% url 'register' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">s'enregitrer</a>
+                    </li>
+
+                    {% endif %}
+
                     <li class="py-4 md:py-0  md:mr-6">
                         <a href="#contact" class="text-sm uppercase font-semibold w-full hover:text-rose-600">about</a>
                     </li>
