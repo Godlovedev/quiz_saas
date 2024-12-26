@@ -18,7 +18,7 @@
                         {% for choice in question.choice.all %}
     
                             {% if choice.is_correct %}
-                            <p class="font-bold text-lg border-b border-solid border-b-slate-900 text-gray-800">-  {{ choice.text }}</p>
+                            <p class="font-bold text-lg border-b border-solid border-b-slate-900 text-green-600">-  {{ choice.text }}</p>
                             {% endif %}
     
                         {% endfor %}
@@ -28,7 +28,10 @@
             </div>
     
         </div>
-    
+        
+    </div>
+    <div class="items-center justify-center flex mt-3">
+        <a href="{{ quiz.get_add_question_url }}" class="bg-white flex place-content-center rounded-3xl text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Ajouter une question</a>
     </div>
 </div>
 

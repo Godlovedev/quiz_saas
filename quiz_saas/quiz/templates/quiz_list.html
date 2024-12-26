@@ -6,9 +6,9 @@
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4 mx-auto p-3 md:p-5 lg:p-8">
         {% for quiz in quizs %}
 
-        <div class="border border-solid border-zinc-200 shadow-xl rounded-lg bg-zinc-200">
+        <div class="border border-solid border-zinc-200 shadow-xl rounded-lg bg-purple-50">
             <p class="py-3 text-center px-2 text-slate-700 font-bold text-2xl">{{ quiz.title }}</p>
-            <p class="text-center">{{ quiz.description }}</p>
+            <p class="text-center text-sm ">{{ quiz.description }}</p>
 
             <div  class="flex place-content-center">
                 {% if user.is_authenticated %}

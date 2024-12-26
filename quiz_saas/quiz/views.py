@@ -194,3 +194,52 @@ class ViewQuizView(View):
         quiz = Quiz.objects.prefetch_related("question__choice").get(id=quiz_id)
 
         return render(self.request, "view_quiz.html", {"quiz":quiz})
+
+class AddQuestionView(View):
+
+    context = {}
+
+    def get(self, *args, **kwargs):
+
+        question_form = QuestionForm()
+
+        self.context = {
+            'question_form': question_form
+        }
+
+        return render(self.request, "add_question.html", self.context)
+    
+    def post(self, *args, **kwargs):
+
+        question = self.request.POST.get("text")
+
+        quiz_id = self.kwargs.get("id")
+
+        quiz = Quiz.objects.get(id=quiz_id)
+
+        question_form = QuestionForm(data={"text": question})
+
+        if question_form.is_valid():
+            question = question_form.save(commit=False)
+            question.quiz = quiz
+            question.save()
+
+            choices = self.request.POST.getlist("choix")
+            valid_ans = self.request.POST.get("valid")
+
+            ans_valid = ""
+            if 0 <= int(valid_ans) < len(choices):
+                ans_valid = choices[int(valid_ans)]
+                choices.remove(ans_valid)
+                
+                Choice.objects.create(question=question, text=ans_valid, is_correct=True)
+
+            for choice in choices:
+                
+                choice_form = ChoiceForm(data={"text":choice})
+                if choice_form.is_valid():
+                    choice_instance =  choice_form.save(commit=False)
+                    choice_instance.question = question
+                    choice_instance.save()
+
+        return redirect("view-quiz", id=quiz_id)

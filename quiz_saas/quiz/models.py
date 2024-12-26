@@ -36,6 +36,9 @@ class Quiz(models.Model):
 
     def get_delete_url(self):
         return reverse("delete-quiz", kwargs={"id":self.id})
+    
+    def get_add_question_url(self):
+        return reverse("add-question", kwargs={"id":self.id})
 
 
 class Question(models.Model):

@@ -7,7 +7,7 @@
         <p class=" text-center font-bold md:text-2xl text-sm text-purple-600">Voulez-vous vraiment supprimer le quiz intitulé {{ quiz.title }} ?</p>
         <form action="" method="post">
             {% csrf_token %}
-            <div class="flex justify-center gap-3">
+            <div class="flex justify-center mt-3 gap-3">
                 <button type="submit" class="bg-white flex place-content-center rounded-lg text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Supprimer</button>
                 <a href="{% url 'panel' %}" class="bg-white flex place-content-center rounded-lg text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Annuler</a>
             </div>
