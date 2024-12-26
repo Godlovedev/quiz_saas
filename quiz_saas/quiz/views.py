@@ -183,7 +183,10 @@ class DeleteQuizView(View):
 
         quiz.delete()
 
-        return redirect("panel")
+        if self.request.user.is_admin:
+            return redirect("admin-panel")
+        else:
+            return redirect("panel")
     
 
 class ViewQuizView(View):
@@ -243,3 +246,25 @@ class AddQuestionView(View):
                     choice_instance.save()
 
         return redirect("view-quiz", id=quiz_id)
+    
+
+class AdminPanelView(View):
+    def get(self, *args, **kwargs):
+
+        quiz = Quiz.objects.select_related("creator").filter(is_validated=False)
+
+        return render(self.request, "admin_panel.html", {"quizs": quiz})
+
+
+class ValidationQuizView(View):
+    def get(self, *args, **kwargs):
+
+        quiz_id = self.kwargs.get("id")
+
+        quiz = Quiz.objects.get(id=quiz_id)
+
+        quiz.is_validated = True
+
+        quiz.save()
+
+        return redirect("admin-panel")

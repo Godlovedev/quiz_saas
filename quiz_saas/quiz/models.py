@@ -39,6 +39,9 @@ class Quiz(models.Model):
     
     def get_add_question_url(self):
         return reverse("add-question", kwargs={"id":self.id})
+    
+    def get_valadation_url(self):
+        return reverse("validate-quiz", kwargs={"id":self.id})
 
 
 class Question(models.Model):

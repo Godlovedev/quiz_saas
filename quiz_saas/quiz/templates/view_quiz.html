@@ -30,8 +30,15 @@
         </div>
         
     </div>
-    <div class="items-center justify-center flex mt-3">
+    <div class="items-center justify-center flex mt-3 gap-3">
+        {% if user.is_admin %}
+        <a href="{{ quiz.get_valadation_url }}" class="bg-white flex place-content-center rounded-3xl text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Valider la publication du quiz</a>
+        <a href="{{ quiz.get_delete_url }}" class="bg-white flex place-content-center rounded-3xl text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Supprimer le quiz</a>
+
+        {% else %}
         <a href="{{ quiz.get_add_question_url }}" class="bg-white flex place-content-center rounded-3xl text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Ajouter une question</a>
+
+        {% endif %}
     </div>
 </div>
 

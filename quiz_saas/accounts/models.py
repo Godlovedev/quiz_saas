@@ -11,5 +11,7 @@ class User(AbstractUser):
 
     profile_picture = models.ImageField(upload_to="images", null=True, blank=True)
 
+    is_admin = models.BooleanField(default=False)
+
     def __str__(self):
         return self.username
