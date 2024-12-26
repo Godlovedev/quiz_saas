@@ -25,14 +25,8 @@ class RegisterView(View):
         if form.is_valid():
 
             form.save()
-
-        form = UserForm()
-
-        self.context = {
-            "form":form
-        }
             
-        return render(self.request, "sing_up.html", self.context)
+        return redirect("login")
 
 
 # Connexion view
@@ -54,8 +48,6 @@ class ConnexionView(View):
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
 
-            form = UserConnexion()
-
             user = authenticate(username=username, password=password)
 
             if user is not None and user.is_active:
@@ -66,7 +58,7 @@ class ConnexionView(View):
             else:
                 message = "une erreur s'est produite !"
 
-        return render(self.request, "login.html", {"form": form})
+        return redirect("quiz-list")
 
 
 # decconnection view

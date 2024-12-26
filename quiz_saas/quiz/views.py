@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from quiz.models import Quiz, Question, UserResult, Choice
-from quiz.utils import LoginRequiredMixin
+from quiz.utils import AdminRequiredMixin, LoginRequiredMixin
 from quiz.forms import ChoiceForm, QuizForm, QuestionForm
+from django.http import HttpResponse
 
 # Create your views here.
 class HomeView(View):
@@ -20,11 +21,14 @@ class QuizView(View):
 
 class QuizRunnigView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
-        quiz_id = self.kwargs.get("id")
+        if self.request.user.quiz_taken_today >= 2:
+            return HttpResponse("<center><h2>Vous avez atteint votre limite de quiz journalière veillez attendre jusque 00h minimum !!!<br> Vous pouvez aussi payer le plan premium qui donne access a autant de quiz que vous voulez par jour.</h2><br><a href='/'>ok</a></center>")
+        else:
+            quiz_id = self.kwargs.get("id")
 
-        quiz = Quiz.objects.prefetch_related("question__choice").get(id=quiz_id)
+            quiz = Quiz.objects.prefetch_related("question__choice").get(id=quiz_id)
 
-        return render(self.request, "quiz_running.html", {"quiz":quiz})
+            return render(self.request, "quiz_running.html", {"quiz":quiz})
 
     def post(self, *args, **kwargs):
 
@@ -145,17 +149,8 @@ class CreateQuizView(LoginRequiredMixin, View):
                         choice_instance =  choice_form.save(commit=False)
                         choice_instance.question = question
                         choice_instance.save()
-                        
 
-            quiz_form = QuizForm()
-            question_form = QuestionForm()
-
-            self.context = {
-                "quiz_form": quiz_form,
-                "question_form": question_form,
-            }
-
-        return render(self.request, "create_quiz.html", self.context)
+        return redirect("panel")
     
 
 class PanelView(LoginRequiredMixin, View):
@@ -166,7 +161,7 @@ class PanelView(LoginRequiredMixin, View):
         return render(self.request, "panel.html", {"quizs": quiz})
 
 
-class DeleteQuizView(View):
+class DeleteQuizView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
 
         quiz_id = self.kwargs.get("id")
@@ -189,7 +184,7 @@ class DeleteQuizView(View):
             return redirect("panel")
     
 
-class ViewQuizView(View):
+class ViewQuizView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
 
         quiz_id = self.kwargs.get("id")
@@ -198,7 +193,7 @@ class ViewQuizView(View):
 
         return render(self.request, "view_quiz.html", {"quiz":quiz})
 
-class AddQuestionView(View):
+class AddQuestionView(LoginRequiredMixin, View):
 
     context = {}
 
@@ -248,7 +243,7 @@ class AddQuestionView(View):
         return redirect("view-quiz", id=quiz_id)
     
 
-class AdminPanelView(View):
+class AdminPanelView(AdminRequiredMixin, View):
     def get(self, *args, **kwargs):
 
         quiz = Quiz.objects.select_related("creator").filter(is_validated=False)
@@ -256,7 +251,7 @@ class AdminPanelView(View):
         return render(self.request, "admin_panel.html", {"quizs": quiz})
 
 
-class ValidationQuizView(View):
+class ValidationQuizView(AdminRequiredMixin, View):
     def get(self, *args, **kwargs):
 
         quiz_id = self.kwargs.get("id")

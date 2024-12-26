@@ -37,7 +37,11 @@ SECRET_KEY = 'django-insecure-%i-*15=2h_rx98$u7yy#nmekuoqgx6j2p$i%dspiqh5slo$-!f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://b6de-154-72-167-174.ngrok-free.app"
+]
 
 
 # Application definition
@@ -60,6 +64,7 @@ TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = [
     "127.0.0.1",
+    " https://b6de-154-72-167-174.ngrok-free.app",
 ]
 
 MIDDLEWARE = [
@@ -155,3 +160,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = "accounts.User"
 
 LOGIN_URL = "login"
+
+# configueration de redis
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_URL = "redis://localhost:6379"
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    "reinitialisation-de-la-limit-à-minuit": {
+        "task": "quiz.tasks.refactoring_user_limit_quiz",
+        "schedule": crontab(minute=4, hour=15),
+    },
+}
