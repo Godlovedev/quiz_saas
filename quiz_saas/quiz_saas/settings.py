@@ -67,6 +67,10 @@ INTERNAL_IPS = [
     " https://b6de-154-72-167-174.ngrok-free.app",
 ]
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, "locale"),
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -76,7 +80,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
-    "django.middleware.locale.LocalMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
@@ -139,13 +143,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = True
+
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = [
+    ("fr", _("Francais")),
+    ("en", _("Anglais"))
+]
 
 
 # Static files (CSS, JavaScript, Images)

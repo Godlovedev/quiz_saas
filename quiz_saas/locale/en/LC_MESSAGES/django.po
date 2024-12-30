@@ -1,0 +1,106 @@
+# Traduction en anglais de l'apllication de quiz.
+# Copyright (C) 2024 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Godlovedev <godlovedev@gmail.com>, 2024.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-30 22:56+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: accounts/templates/login.html:8
+msgid "formulaire de connexion"
+msgstr "Connection form"
+
+#: accounts/templates/login.html:10 accounts/templates/sing_up.html:10
+msgid "Envoyer"
+msgstr "Send"
+
+#: accounts/templates/sing_up.html:8
+msgid "Formulaire de creation de compte"
+msgstr "Account creation form"
+
+#: quiz/templates/delete_quiz.html:7
+msgid "Voulez-vous vraiment supprimer le quiz intitulé"
+msgstr "Do you really want to delete the quiz titled"
+
+#: quiz/templates/delete_quiz.html:11 quiz/templates/panel.html:19
+msgid "Supprimer"
+msgstr "delete"
+
+#: quiz/templates/delete_quiz.html:13 quiz/templates/delete_quiz.html:15
+msgid "Annuler"
+msgstr "Cancel"
+
+#: quiz/templates/home.html:15
+msgid ""
+"Venez decouvrir des quiz très amusants et interressants. Pour commencer vous "
+"devez créer un compte. Cliquez ici "
+msgstr ""
+"Comme and discover fun ant interessant quizzes. To start you Should create "
+"and account. Clique here "
+
+#: quiz/templates/panel.html:7
+msgid "Nouveau quiz"
+msgstr "New quiz"
+
+#: quiz/templates/panel.html:17
+msgid "Voir"
+msgstr "See"
+
+#: quiz/templates/panel.html:24
+msgid "Vous n'avez créé aucun quiz pour le moment..."
+msgstr "You haven't created any quiz yet..."
+
+#: quiz/templates/quiz_list.html:15
+msgid "Essayer"
+msgstr "Try"
+
+#: quiz/templates/quiz_list.html:18
+msgid "Connexion"
+msgstr "Connection"
+
+#: quiz/templates/quiz_running.html:21
+msgid "Choix"
+msgstr "Choices"
+
+#: quiz/templates/quiz_running.html:35
+msgid "Terminer"
+msgstr "Finish"
+
+#: quiz/views.py:26
+msgid ""
+"<center><h2>Vous avez atteint votre limite de quiz journalière veillez "
+"attendre jusque 00h minimum !!!<br> Vous pouvez aussi payer le plan premium "
+"qui donne access a autant de quiz que vous voulez par jour.</h2><br><a "
+"href='/'>ok</a></center>"
+msgstr ""
+"you have reached your daily quiz limit. Make sure to reach at least 00:00 so "
+"that the limit is reset!!!"
+
+#: quiz_saas/settings.py:157
+msgid "Francais"
+msgstr "French"
+
+#: quiz_saas/settings.py:158
+msgid "Anglais"
+msgstr "English"
+
+#: templates/base.html:61
+#, fuzzy
+#| msgid "Connexion"
+msgid "connexion"
+msgstr "Connection"
+
+#~ msgid "Bienvenue sur"
+#~ msgstr "Wellcome on"

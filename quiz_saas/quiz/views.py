@@ -23,7 +23,7 @@ class QuizView(View):
 class QuizRunnigView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         if self.request.user.quiz_taken_today >= 2:
-            return HttpResponse(f"<center><h2>{_('Vous avez atteint votre limite de quiz journalière veillez attendre jusque 00h minimum !!!')}<br> {_('Vous pouvez aussi payer le plan premium qui donne access a autant de quiz que vous voulez par jour.')}</h2><br><a href='/'>{_('ok')}</a></center>")
+            return HttpResponse(_("<center><h2>Vous avez atteint votre limite de quiz journalière veillez attendre jusque 00h minimum !!!<br> Vous pouvez aussi payer le plan premium qui donne access a autant de quiz que vous voulez par jour.</h2><br><a href='/'>ok</a></center>"))
         else:
             quiz_id = self.kwargs.get("id")
 

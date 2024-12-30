@@ -11,6 +11,9 @@
 
 </head>
 <body>
+    {% get_available_languages as LANGUAGES %}
+    
+    {% get_language_info_list for LANGUAGES as languages %}
     <div>
 
         <header class="bg-white z-50 fixed top-0 w-full shadow">
@@ -45,13 +48,25 @@
                     {% else %}
 
                     <li class="py-4 md:py-0 md:mr-6">
-                        <a href="{% url 'login' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">connexion</a>
+                        <a href="{% url 'login' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">{% trans "connexion" %}</a>
                     </li>
                     <li class="py-4 md:py-0 md:mr-6">
                         <a href="{% url 'register' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">s'enregitrer</a>
                     </li>
 
                     {% endif %}
+                    <div class="py-4 md:py-0 md:mr-6">
+                        <a class="text-sm uppercase font-semibold w-full hover:text-rose-600" href="#" id="languages">
+                          Languages
+                        </a>
+                        <div class="hidden" id="langbox">
+                            <div class=" p-6 bg-purple-50 rounded-lg flex flex-col gap-3 fixed">
+                                {% for language in languages %}
+                                <a class="text-sm text-black font-bold w-full hover:text-rose-600" href="/{{language.code}}">{{ language.name_local }}</a>
+                                {% endfor %}
+                              </div>
+                        </div>
+                    <div>
                 </ul>
             </nav>
         </header>
@@ -87,6 +102,12 @@
     
         toggleMenuBtn.setAttribute("aria-expanded", "true")
     }
+
+    let btn_Language = document.getElementById("languages")
+
+    btn_Language.addEventListener("click", function(){
+        document.getElementById("langbox").classList.toggle("hidden")
+    })
     
     </script>        
 
