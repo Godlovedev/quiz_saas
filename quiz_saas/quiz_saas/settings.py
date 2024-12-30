@@ -76,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "django.middleware.locale.LocalMiddleware",
 ]
 
 SESSION_ENGINE = "django.contrib.sessions.backends.db"

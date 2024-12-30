@@ -6,13 +6,13 @@
     
     <div class="max-w-2xl md:max-w-7xl mx-auto px-3 flex place-content-center grid-cols-2">
         <div class="mx-auto">
-            <p class="font-bold text-4xl text-center">Bienvenue sur <span class="underline underline-offset-2 font-serif text-violet-600">E-Quiz Game</span> </p>
+            <p class="font-bold text-4xl text-center">{% trans "Bienvenue sur" %} <span class="underline underline-offset-2 font-serif text-violet-600">E-Quiz Game</span> </p>
         </div>
     </div>
 
     <div>
         <div class="max-w-2xl text-justify mt-5 mx-auto p-3 mb-56">
-            <p>Venez decouvrir des quiz très amusants et interressants. Pour commencer vous devez créer un compte. Cliquez ici <a class="text-blue-500 underline underline-offset-2" href="{% url 'register' %}"> Creer un compte</a>. Si vous en avez deja un vous pouvez juste vous connecter et vous amuser sur nos différents quiz <a class="text-blue-500 underline underline-offset-2" href="{% url 'login' %}"> Connexion.</a> </p>
+            <p>{% trans "Venez decouvrir des quiz très amusants et interressants. Pour commencer vous devez créer un compte. Cliquez ici " %}<a class="text-blue-500 underline underline-offset-2" href="{% url 'register' %}"> Creer un compte</a>. Si vous en avez deja un vous pouvez juste vous connecter et vous amuser sur nos différents quiz <a class="text-blue-500 underline underline-offset-2" href="{% url 'login' %}"> Connexion.</a> </p>
         </div>
     </div>
 

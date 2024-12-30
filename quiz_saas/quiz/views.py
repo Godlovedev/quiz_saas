@@ -4,6 +4,7 @@ from quiz.models import Quiz, Question, UserResult, Choice
 from quiz.utils import AdminRequiredMixin, LoginRequiredMixin
 from quiz.forms import ChoiceForm, QuizForm, QuestionForm
 from django.http import HttpResponse
+from django.utils.translation import gettext as _
 
 # Create your views here.
 class HomeView(View):
@@ -22,7 +23,7 @@ class QuizView(View):
 class QuizRunnigView(LoginRequiredMixin, View):
     def get(self, *args, **kwargs):
         if self.request.user.quiz_taken_today >= 2:
-            return HttpResponse("<center><h2>Vous avez atteint votre limite de quiz journalière veillez attendre jusque 00h minimum !!!<br> Vous pouvez aussi payer le plan premium qui donne access a autant de quiz que vous voulez par jour.</h2><br><a href='/'>ok</a></center>")
+            return HttpResponse(f"<center><h2>{_('Vous avez atteint votre limite de quiz journalière veillez attendre jusque 00h minimum !!!')}<br> {_('Vous pouvez aussi payer le plan premium qui donne access a autant de quiz que vous voulez par jour.')}</h2><br><a href='/'>{_('ok')}</a></center>")
         else:
             quiz_id = self.kwargs.get("id")
 
