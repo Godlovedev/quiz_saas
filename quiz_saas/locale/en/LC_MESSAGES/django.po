@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 22:56+0000\n"
+"POT-Creation-Date: 2025-01-02 08:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,97 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: accounts/templates/login.html:8
+#: accounts/templates/login.html:9
 msgid "formulaire de connexion"
 msgstr "Connection form"
 
-#: accounts/templates/login.html:10 accounts/templates/sing_up.html:10
+#: accounts/templates/login.html:11 accounts/templates/sing_up.html:11
+#: quiz/templates/add_question.html:34
 msgid "Envoyer"
 msgstr "Send"
 
-#: accounts/templates/sing_up.html:8
+#: accounts/templates/sing_up.html:9
 msgid "Formulaire de creation de compte"
 msgstr "Account creation form"
 
-#: quiz/templates/delete_quiz.html:7
+#: quiz/templates/add_question.html:10 quiz/templates/view_quiz.html:39
+msgid "Ajouter une question"
+msgstr "Add a question"
+
+#: quiz/templates/add_question.html:16 quiz/templates/create_quiz.html:25
+#: quiz/templates/user_result.html:30
+msgid "Propositions"
+msgstr "Propositions"
+
+#: quiz/templates/add_question.html:28 quiz/templates/create_quiz.html:37
+msgid "Ajouter une reponse"
+msgstr "Add an answer"
+
+#: quiz/templates/add_question.html:32
+msgid "Si votre quiz contient des propos déplacés il sera supprimé"
+msgstr "If your quiz contains inappropriate comments it will be deleted"
+
+#: quiz/templates/admin_panel.html:15 quiz/templates/panel.html:18
+msgid "Voir"
+msgstr "See"
+
+#: quiz/templates/admin_panel.html:22
+#, fuzzy
+#| msgid "Vous n'avez créé aucun quiz pour le moment..."
+msgid "Pas de nouveaux quiz pour le moment..."
+msgstr "You haven't created any quiz yet..."
+
+#: quiz/templates/create_quiz.html:7
+#, fuzzy
+#| msgid "Formulaire de creation de compte"
+msgid "Formulaire de creation de quiz"
+msgstr "Account creation form"
+
+#: quiz/templates/create_quiz.html:19
+msgid "Question du quiz"
+msgstr "Quiz question"
+
+#: quiz/templates/create_quiz.html:26 quiz/templates/quiz_running.html:21
+msgid "Choix"
+msgstr "Choices"
+
+#: quiz/templates/create_quiz.html:33
+msgid "entrer une reponse"
+msgstr "Enter an answer"
+
+#: quiz/templates/create_quiz.html:41
+msgid ""
+"Vous pourrez ajouter d'autres questions a votre quiz depuis votre panel. "
+"Pour voire votre quiz sur la page des quiz, les admins vont tout d'abord le "
+"consulter et le publier s'il est dans les normes.Si votre quiz contient des "
+"propos déplacés il sera supprimé"
+msgstr ""
+"You can add other questions to your quiz from your panel"
+" To see your quiz on the quiz page, the admins will first consult it and "
+"publish it if it is in the standards. If your quiz contains inappropriate "
+"comments it will be deleted"
+
+#: quiz/templates/create_quiz.html:43
+msgid "Créer le quiz"
+msgstr "Create the quiz"
+
+#: quiz/templates/delete_quiz.html:8
 msgid "Voulez-vous vraiment supprimer le quiz intitulé"
 msgstr "Do you really want to delete the quiz titled"
 
-#: quiz/templates/delete_quiz.html:11 quiz/templates/panel.html:19
+#: quiz/templates/delete_quiz.html:12 quiz/templates/panel.html:20
 msgid "Supprimer"
 msgstr "delete"
 
-#: quiz/templates/delete_quiz.html:13 quiz/templates/delete_quiz.html:15
+#: quiz/templates/delete_quiz.html:14 quiz/templates/delete_quiz.html:16
 msgid "Annuler"
 msgstr "Cancel"
 
-#: quiz/templates/home.html:15
+#: quiz/templates/home.html:11
+msgid "Bienvenue sur"
+msgstr "Wellcome on"
+
+#: quiz/templates/home.html:17
 msgid ""
 "Venez decouvrir des quiz très amusants et interressants. Pour commencer vous "
 "devez créer un compte. Cliquez ici "
@@ -50,33 +116,92 @@ msgstr ""
 "Comme and discover fun ant interessant quizzes. To start you Should create "
 "and account. Clique here "
 
-#: quiz/templates/panel.html:7
-msgid "Nouveau quiz"
-msgstr "New quiz"
+#: quiz/templates/home.html:17
+msgid "Creer un compte"
+msgstr "Create an account"
 
-#: quiz/templates/panel.html:17
-msgid "Voir"
-msgstr "See"
+#: quiz/templates/home.html:17
+msgid ""
+"Si vous en avez deja un vous pouvez juste vous connecter et vous amuser sur "
+"nos différents quiz"
+msgstr ""
+"If you already have one you can just log in and have fun on our different "
+"quizzes"
 
-#: quiz/templates/panel.html:24
-msgid "Vous n'avez créé aucun quiz pour le moment..."
-msgstr "You haven't created any quiz yet..."
-
-#: quiz/templates/quiz_list.html:15
-msgid "Essayer"
-msgstr "Try"
-
-#: quiz/templates/quiz_list.html:18
+#: quiz/templates/home.html:17 quiz/templates/quiz_list.html:19
 msgid "Connexion"
 msgstr "Connection"
 
-#: quiz/templates/quiz_running.html:21
-msgid "Choix"
-msgstr "Choices"
+#: quiz/templates/panel.html:8
+msgid "Nouveau quiz"
+msgstr "New quiz"
+
+#: quiz/templates/panel.html:25
+msgid "Vous n'avez créé aucun quiz pour le moment..."
+msgstr "You haven't created any quiz yet..."
+
+#: quiz/templates/quiz_list.html:16
+msgid "Essayer"
+msgstr "Try"
+
+#: quiz/templates/quiz_running.html:12
+msgid "Questions"
+msgstr "Questions"
 
 #: quiz/templates/quiz_running.html:35
 msgid "Terminer"
 msgstr "Finish"
+
+#: quiz/templates/user_result.html:10
+msgid "Resultat du quiz"
+msgstr "Quiz result"
+
+#: quiz/templates/user_result.html:13
+msgid "Thème"
+msgstr "Theme"
+
+#: quiz/templates/user_result.html:14
+msgid "Nombre de réponses justes"
+msgstr "Number of correct answers"
+
+#: quiz/templates/user_result.html:15
+msgid "Nombre total de questions"
+msgstr "Total number of questions"
+
+#: quiz/templates/user_result.html:16
+msgid "Pourcentage de réussite"
+msgstr "Success rate"
+
+#: quiz/templates/user_result.html:17
+msgid "Faire un autre quiz"
+msgstr "Do an other quiz"
+
+#: quiz/templates/user_result.html:25
+msgid "Réponses du quiz"
+msgstr "Quiz answers"
+
+#: quiz/templates/user_result.html:29 quiz/templates/view_quiz.html:11
+#: quiz/templates/view_quiz.html:12
+msgid "Question"
+msgstr "Question"
+
+#: quiz/templates/user_result.html:35 quiz/templates/view_quiz.html:17
+msgid "Réponse juste"
+msgstr "Correct answer"
+
+#: quiz/templates/view_quiz.html:7
+msgid "Titre"
+msgstr "Title"
+
+#: quiz/templates/view_quiz.html:35
+msgid "Valider la publication du quiz"
+msgstr "Validate the publication of the quiz"
+
+#: quiz/templates/view_quiz.html:36
+#, fuzzy
+#| msgid "Supprimer"
+msgid "Supprimer le quiz"
+msgstr "delete"
 
 #: quiz/views.py:26
 msgid ""
@@ -96,11 +221,12 @@ msgstr "French"
 msgid "Anglais"
 msgstr "English"
 
-#: templates/base.html:61
+#: templates/base.html:51
 #, fuzzy
 #| msgid "Connexion"
 msgid "connexion"
 msgstr "Connection"
 
-#~ msgid "Bienvenue sur"
-#~ msgstr "Wellcome on"
+#: templates/base.html:60
+msgid "Langues"
+msgstr "Languages"
