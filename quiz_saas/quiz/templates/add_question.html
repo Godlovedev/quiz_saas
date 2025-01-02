@@ -7,13 +7,13 @@
     <form action="" method="post" class="grid gap-3">
         {% csrf_token %}
         <div class="grid gap-3">
-            <h1 class="text-2xl text-center font-bold text-purple-500">Ajouter une question</h1>
+            <h1 class="text-2xl text-center font-bold text-purple-500">{% trans "Ajouter une question" %}</h1>
 
             {{ question_form.text.label }}
             {{ question_form.text }}
 
 
-            <h1 class="text-2xl font-bold text-center text-purple-600">Propositions</h1>
+            <h1 class="text-2xl font-bold text-center text-purple-600">{% trans "Propositions" %}</h1>
             <label for="choix">Choix</label>
             <div class="grid gap-3" id="ansbox1">
                 <div class="flex flex-row gap-3">
@@ -25,13 +25,13 @@
                     <input type="radio" required name="valid" value="1" id="choix" class="repjuste">    
                 </div>
             </div>
-            <button type="button" class="bg-white text-purple-600 rounded-lg border border-solid border-purple-400 hover:bg-purple-600 hover:text-white font-bold" id="addans1">Ajouter une reponse</button>
+            <button type="button" class="bg-white text-purple-600 rounded-lg border border-solid border-purple-400 hover:bg-purple-600 hover:text-white font-bold" id="addans1">{% trans "Ajouter une reponse" %}</button>
             <div class="border-t border-t-black mb-3 w-full mt-2">
             </div>
 
-            <p class=" font-bold text-purple-600 text-xs">NB: Si votre quiz contient des propos déplacés il sera supprimé.</p>
+            <p class=" font-bold text-purple-600 text-xs">NB: {% trans "Si votre quiz contient des propos déplacés il sera supprimé" %}.</p>
 
-            <button type="submit" class="text-purple-600 p-3 border border-solid border-purple-600 font-bold bg-white hover:bg-purple-600 hover:text-white rounded-lg">Envoyer</button>
+            <button type="submit" class="text-purple-600 p-3 border border-solid border-purple-600 font-bold bg-white hover:bg-purple-600 hover:text-white rounded-lg">{% trans "Envoyer" %}</button>
             </div>
     </form>
 </div>

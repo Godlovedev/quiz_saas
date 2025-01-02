@@ -1,20 +1,20 @@
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block content %}
 <div>
     <div class="items-center justify-center flex">
         <div class="w-full xl:max-w-xl lg:max-w-lg md:max-w-md max-w-xs  shadow-md bg-purple-50 rounded-lg p-6">
-            <h1 class="text-2xl font-bold text-purple-600 text-center">Titre: {{ quiz.title }}</h1>
+            <h1 class="text-2xl font-bold text-purple-600 text-center">{% trans "Titre" %}: {{ quiz.title }}</h1>
             <div>
                 {% for question in quiz.question.all %}
     
-                    <p class="mt-4 font-lg text-gray-700 text-lg">Question: <span class="font-bold text-purple-700">{{ question.text }}</span></p>
-                    <p>Propositions: <br> 
+                    <p class="mt-4 font-lg text-gray-700 text-lg">{% trans "Question" %}: <span class="font-bold text-purple-700">{{ question.text }}</span></p>
+                    <p>{% trans "Question" %}: <br> 
                     {% for choice in question.choice.all %}
                     <p class="mt-2 text-gray-800 font-semibold">- {{ choice.text }}</p>
                     {% endfor %}
                     </p>
-                    <p class="mt-2">Réponse juste: <br> 
+                    <p class="mt-2">{% trans "Réponse juste" %}: <br> 
                         {% for choice in question.choice.all %}
     
                             {% if choice.is_correct %}
@@ -32,11 +32,11 @@
     </div>
     <div class="items-center justify-center flex mt-3 gap-3">
         {% if user.is_admin %}
-        <a href="{{ quiz.get_valadation_url }}" class="bg-white flex place-content-center rounded-3xl text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Valider la publication du quiz</a>
-        <a href="{{ quiz.get_delete_url }}" class="bg-white flex place-content-center rounded-3xl text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Supprimer le quiz</a>
+        <a href="{{ quiz.get_valadation_url }}" class="bg-white flex place-content-center rounded-3xl text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">{% trans "Valider la publication du quiz" %}</a>
+        <a href="{{ quiz.get_delete_url }}" class="bg-white flex place-content-center rounded-3xl text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">{% trans "Supprimer le quiz" %}</a>
 
         {% else %}
-        <a href="{{ quiz.get_add_question_url }}" class="bg-white flex place-content-center rounded-3xl text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">Ajouter une question</a>
+        <a href="{{ quiz.get_add_question_url }}" class="bg-white flex place-content-center rounded-3xl text-purple-600 hover:bg-purple-600 hover:text-white border-purple-300 p-3 font-bold border">{% trans "Ajouter une question" %}</a>
 
         {% endif %}
     </div>

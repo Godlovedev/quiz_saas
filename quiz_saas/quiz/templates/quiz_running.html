@@ -9,7 +9,7 @@
         <div>
             <form action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <p class="text-3xl underline underline-offset-2 mt-3">Questions</p>
+                <p class="text-3xl underline underline-offset-2 mt-3">{% trans "Questions" %}</p>
 
                 <div class="grid gap-3 md:grid-cols-2 mt-5">
                     {% for question in quiz.question.all %}
