@@ -264,3 +264,13 @@ class ValidationQuizView(AdminRequiredMixin, View):
         quiz.save()
 
         return redirect("admin-panel")
+    
+
+class PremiumView(View):
+    def get(self, *args, **kwargs):
+
+        return render(self.request, "premium.html")
+
+    def post(self, *args, **kwargs):
+
+        return

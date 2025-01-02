@@ -13,5 +13,6 @@ urlpatterns = [
     path("delete-quiz/<int:id>/", views.DeleteQuizView.as_view(), name="delete-quiz"),
     path("view-quiz/<int:id>/add-question/", views.AddQuestionView.as_view(), name="add-question"),
     path("admin-panel/", views.AdminPanelView.as_view(), name="admin-panel"),
-    path("admin-panel/<int:id>/validate-quiz/", views.ValidationQuizView.as_view(), name="validate-quiz")
+    path("admin-panel/<int:id>/validate-quiz/", views.ValidationQuizView.as_view(), name="validate-quiz"),
+    path("premium", views.PremiumView.as_view(), name="premium"),
 ]

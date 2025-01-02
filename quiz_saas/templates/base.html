@@ -44,6 +44,9 @@
                     <li class="py-4 md:py-0 md:mr-6">
                         <a href="{% url 'logout' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">deconnexion</a>
                     </li>
+                    <li class="py-4 md:py-0 md:mr-6">
+                        <a href="{% url 'premium' %}" class="text-sm uppercase font-semibold w-full hover:text-rose-600">Premium</a>
+                    </li>
 
                     {% else %}
 
@@ -70,17 +73,6 @@
                 </ul>
             </nav>
         </header>
-        <div class=" max-w-5xl mx-auto pt-16 font-serif">
-            <div>
-                <br>
-                {% for message in messages %}
-                    <div class=" rounded-lg {{message.tags}}">
-                        {{ message|safe }}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-        
     </div>
     <script>
     
