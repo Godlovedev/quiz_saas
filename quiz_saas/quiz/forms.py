@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from quiz.models import Quiz, Question, Choice
+from quiz.models import Payment, Quiz, Question, Choice
 
 
 """ formulaire pour des quiz """
@@ -26,3 +26,8 @@ class ChoiceForm(ModelForm):
     class Meta:
         model = Choice
         fields = ("text",)
+
+class PaymentForm(ModelForm):
+    class Meta:
+        model = Payment
+        fields = ['name', 'surname', 'email', 'phone_number', 'address', 'city', 'country', 'state', 'zip_code']

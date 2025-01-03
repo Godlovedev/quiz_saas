@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="max-w-md md:max-w-lg lg:max-w-2xl mx-auto bg-purple-50 shadow-md">
+    <div class="p-4">
+        <form action="" method="post" class="gap-3 grid ">
+            {% csrf_token %}
+            {{form.name.label}}
+            {{form.name}}
+
+            {{form.surname.label}}
+            {{form.surname}}
+            
+            {{form.email.label}}
+            {{form.email}}
+
+            {{form.phone_number.label}}
+            {{form.phone_number}}
+
+            {{form.address.label}}
+            {{form.address}}
+
+            {{form.city.label}}
+            {{form.city}}
+
+            {{form.country.label}}
+            {{form.country}}
+
+            {{form.state.label}}
+            {{form.state}}
+
+            {{form.zip_code.label}}
+            {{form.zip_code}}
+
+
+            <button type="submit" class="bg-purple-500 border mt-4 border-solid border-purple-600 text-white font-bold px-4 py-2 rounded hover:bg-purple-600">Envoyer</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock content %}

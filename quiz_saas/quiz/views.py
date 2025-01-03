@@ -1,10 +1,16 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.views import View
 from quiz.models import Quiz, Question, UserResult, Choice
 from quiz.utils import AdminRequiredMixin, LoginRequiredMixin
-from quiz.forms import ChoiceForm, QuizForm, QuestionForm
+from quiz.forms import ChoiceForm, PaymentForm, QuizForm, QuestionForm
 from django.http import HttpResponse
+import random
+import string
+import requests
 from django.utils.translation import gettext as _
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 class HomeView(View):
@@ -274,3 +280,68 @@ class PremiumView(View):
     def post(self, *args, **kwargs):
 
         return
+
+
+def generate_transaction_id():
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+
+
+class PremiumPaymentInitiontionView(View):
+    def get(self, *args, **kwargs):
+
+        form = PaymentForm()
+
+        return render(self.request, "premium_form.html",{"form":form})
+
+    def post(self, *args, **kwargs):
+
+        form = PaymentForm(self.request.POST)
+
+        if form.is_valid():
+            payment = form.save(commit=False)
+            payment.amount = 100
+            payment.transaction_id = generate_transaction_id()
+            payment.save()
+
+            headers = {
+                'Content-Type': 'application/json',
+            }
+
+            # initier le paiment a l'API de Cinetpay
+            data = {
+                'apikey': '19664086706773ace99c1653.97843273',
+                'site_id': '105884689',
+                'transaction_id': payment.transaction_id,
+                'amount': str(payment.amount),
+                'currency': 'XAF',
+                'description': 'Payment for order',
+                'customer_name': payment.name,
+                'customer_surname': payment.surname,
+                'customer_email': payment.email,
+                'customer_phone_number': payment.phone_number,
+                'customer_address': payment.address,
+                'customer_city': payment.city,
+                'customer_country': "CM",
+                'customer_state': "CM",
+                'customer_zip_code': payment.zip_code,
+                'notify_url': self.request.build_absolute_uri(reverse('notify')),
+                # 'return_url': self.request.build_absolute_uri(reverse('payment_success', args=[payment.id])),
+                # 'cancel_url': self.request.build_absolute_uri(reverse('payment_failed', args=[payment.id])),
+                'mode': 'DEVELOPPEMENT',
+                'channels': 'ALL'
+            }
+
+            response = requests.post('https://api-checkout.cinetpay.com/v2/payment', headers=headers, json=data)
+            response_data = response.json()
+
+            if response.status_code == 200 or response.status_code == 201:
+                return redirect(response_data["data"]["payment_url"])
+
+        return render(self.request, "premium_form.html",{"form":form})
+
+
+@method_decorator(csrf_exempt, name="dispatch")
+class NotifyView(View):
+    def post(self, *args, **kwargs):
+        print(self.request.POST)
+        return HttpResponse("yo")

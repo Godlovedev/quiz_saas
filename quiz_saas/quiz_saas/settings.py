@@ -40,7 +40,7 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://b6de-154-72-167-174.ngrok-free.app"
+    "https://52c1-129-0-99-171.ngrok-free.app"
 ]
 
 
@@ -64,7 +64,7 @@ TAILWIND_APP_NAME = 'theme'
 
 INTERNAL_IPS = [
     "127.0.0.1",
-    " https://b6de-154-72-167-174.ngrok-free.app",
+    " https://52c1-129-0-99-171.ngrok-free.app",
 ]
 
 LOCALE_PATHS = [
